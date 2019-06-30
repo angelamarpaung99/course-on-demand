@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">cash on delivery</string>
+    <string name="chat_name">Chat</string>
+    <string name="home" >Home</string>
+    <string name="fund">Fund</string>
+    <string name="orders">Orders</string>
+    <string name="account">Account</string>
+</resources>

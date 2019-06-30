@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginMentor">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="84dp"
+            android:layout_marginRight="260dp"
+            android:layout_marginBottom="514dp"
+            android:text="COD"
+            android:textColor="#3D8AFF"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="126dp"
+            android:layout_marginRight="180dp"
+            android:layout_marginBottom="493dp"
+            android:text="Course On Demand"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="202dp"
+            android:text="Mentor Login"
+            android:textColor="@color/colorPrimary"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/emailBox"
+            android:layout_width="312dp"
+            android:layout_height="52dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="268dp"
+            android:layout_marginBottom="320dp"
+            android:background="@drawable/rectangle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="274dp"
+            android:layout_marginBottom="354dp"
+            android:text="Email"
+            android:textColor="#000000"
+            android:textSize="10dp" />
+
+        <EditText
+            android:id="@+id/emailTxt"
+            android:layout_width="312dp"
+            android:layout_height="52dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="275dp"
+            android:layout_marginBottom="320dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:hint="Input Email"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+
+        <View
+            android:id="@+id/passwordBox"
+            android:layout_width="312dp"
+            android:layout_height="52dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="356dp"
+            android:layout_marginBottom="232dp"
+            android:background="@drawable/rectangle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="363dp"
+            android:layout_marginBottom="265dp"
+            android:text="Password"
+            android:textColor="#000000"
+            android:textSize="10dp" />
+
+        <EditText
+            android:layout_width="312dp"
+            android:layout_height="52dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="360dp"
+            android:layout_marginBottom="232dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:hint="Input Password"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+
+        <Button
+            android:layout_width="312dp"
+            android:layout_height="36dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="444dp"
+            android:layout_marginBottom="160dp"
+            android:background="@drawable/my_button"
+            android:text="Sign in"
+            android:textColor="#FFFFFF" />
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>
