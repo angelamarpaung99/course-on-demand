@@ -1,6 +1,7 @@
 package com.example.courseondemand.home_fragment_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.courseondemand.R;
+import com.example.courseondemand.ScheduleDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,18 +44,20 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         final int position = i;
 
         final ListScheduleModel scheduleModel = mLists.get(position);
-        viewHolder.tentor.setText(scheduleModel.getTentor());
+        viewHolder.name.setText(scheduleModel.getName());
         viewHolder.lesson.setText(scheduleModel.getLesson());
         viewHolder.start.setText(scheduleModel.getStart());
         viewHolder.day.setText(scheduleModel.getDay());
         viewHolder.duration.setText(scheduleModel.getDuration());
 
-//        viewHolder.cvScheduleListNotes.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(mContext, )
-//            }
-//        })
+        viewHolder.cvScheduleListNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent intent = new Intent(mContext, ScheduleDetailActivity.class);
+            intent.putExtra("key", "id");
+            mContext.startActivity(intent);
+            }
+        });
     }
 
 
@@ -67,14 +71,14 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         CardView cvScheduleListNotes;
         ImageView ivScheduleListNotes;
 
-        TextView tentor, lesson, day,duration, start;
+        TextView name, lesson, day,duration, start;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
             cvScheduleListNotes = itemView.findViewById(R.id.cvScheduleListNotes);
             ivScheduleListNotes = itemView.findViewById(R.id.ivScheduleListNotes);
-            tentor = itemView.findViewById(R.id.tvTentor);
+            name = itemView.findViewById(R.id.tvName);
             lesson = itemView.findViewById(R.id.tvLesson);
             day = itemView.findViewById(R.id.tvDay);
             start = itemView.findViewById(R.id.tvStart);

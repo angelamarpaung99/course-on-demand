@@ -30,13 +30,13 @@
             android:text="Not Active  "
             android:layout_toRightOf="@id/tvSchedule"
             android:theme="@style/SwitchHome"
-            android:checked="false"
             android:layout_marginLeft="130dp"
             android:layout_marginTop="75dp" />
     </LinearLayout>
 
 
     <RelativeLayout
+        android:id="@+id/relativelayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
@@ -69,12 +69,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ivNotActive"
-                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="114dp"
-                android:layout_marginTop="30.86dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="114dp"
-                android:layout_marginBottom="236dp"
+                android:textColor="@android:color/black"
                 android:text="There is no schedule yet" />
         </LinearLayout>
     </RelativeLayout>

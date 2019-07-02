@@ -1,16 +1,26 @@
 package com.example.courseondemand.home_fragment_list;
 
-public class ListScheduleModel {
+import java.io.Serializable;
 
-    private String id, tentor, day, lesson, start, duration;
+public class ListScheduleModel implements Serializable {
 
-    public ListScheduleModel(String id, String tentor, String day, String lesson, String start, String duration) {
+    private String id, name, day, lesson, start,ends, duration, major, university, teachingduration, packet;
+    private int price,person;
+
+    public ListScheduleModel(String id, String name, String day, String lesson, String start, String ends, String duration, String major, String university, String teachingduration, String packet, int price, int person) {
         this.id = id;
-        this.tentor = tentor;
+        this.name = name;
         this.day = day;
         this.lesson = lesson;
         this.start = start;
+        this.ends = ends;
         this.duration = duration;
+        this.major = major;
+        this.university = university;
+        this.teachingduration = teachingduration;
+        this.packet = packet;
+        this.price = price;
+        this.person = person;
     }
 
     public String getId() {
@@ -21,12 +31,12 @@ public class ListScheduleModel {
         this.id = id;
     }
 
-    public String getTentor() {
-        return tentor;
+    public String getName() {
+        return name;
     }
 
-    public void setTentor(String tentor) {
-        this.tentor = tentor;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDay() {
@@ -53,11 +63,67 @@ public class ListScheduleModel {
         this.start = start;
     }
 
+    public String getEnds() {
+        return ends;
+    }
+
+    public void setEnds(String ends) {
+        this.ends = ends;
+    }
+
     public String getDuration() {
         return duration;
     }
 
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(String university) {
+        this.university = university;
+    }
+
+    public String getTeachingduration() {
+        return teachingduration;
+    }
+
+    public void setTeachingduration(String teachingduration) {
+        this.teachingduration = teachingduration;
+    }
+
+    public String getPacket() {
+        return packet;
+    }
+
+    public void setPacket(String packet) {
+        this.packet = packet;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getPerson() {
+        return person;
+    }
+
+    public void setPerson(int person) {
+        this.person = person;
     }
 }

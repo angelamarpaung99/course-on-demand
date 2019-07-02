@@ -29,11 +29,11 @@ public class ListScheduleActivity extends AppCompatActivity {
     }
 
     private void initDummy() {
-        mLists.add(new ListScheduleModel("1", "Angela", "Monday", "Kalkulus", "08:30", "2 hours"));
-        mLists.add(new ListScheduleModel("2", "Melissa", "Monday", "Kalkulus", "08:30", "2 hours"));
-        mLists.add(new ListScheduleModel("3", "Lisa", "Monday", "Kalkulus", "08:30", "2 hours"));
-        mLists.add(new ListScheduleModel("4", "Jennie", "Monday", "Kalkulus", "08:30", "2 hours"));
-        mAdapter.notifyDataSetChanged();
+       mLists.add(new ListScheduleModel("1", "Angela", "Monday", "Kalkulus 1","11:30", "12:00","1 week", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
+       mLists.add(new ListScheduleModel("2", "Melissa", "Monday", "Kalkulus 1","11:30", "12:00","1 week", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
+       mLists.add(new ListScheduleModel("3", "Claudia", "Monday", "Kalkulus 1","11:30", "12:00","1 week", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
+       mLists.add(new ListScheduleModel("4", "Yolanda", "Monday", "Kalkulus 1","11:30", "12:00","1 week", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
+       mAdapter.notifyDataSetChanged();
     }
 
     private void initRecyclerView() {

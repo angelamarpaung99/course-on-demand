@@ -9,8 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Switch;
-import android.widget.Toast;
 
 
 public class HomeNotActive extends AppCompatActivity {
@@ -19,7 +17,7 @@ public class HomeNotActive extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity1);
+        setContentView(R.layout.home_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.home_toolbar);
         setSupportActionBar(toolbar);
