@@ -40,23 +40,25 @@ public class ScheduleDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_activity_detail);
 
-        ListScheduleModel mDetail = (ListScheduleModel) getIntent().getSerializableExtra("key");
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        ListScheduleModel data =  (ListScheduleModel)bundle.getSerializable("key");
+        setData(data);
     }
 
-    public void setData(ListScheduleModel mDetail){
-        tvNameDetail.setText(mDetail.getName());
-        tvUniversityDetail.setText(mDetail.getUniversity());
-
-        tvLessonDetail.setText(mDetail.getLesson());
-        tvMajorDetail.setText(mDetail.getMajor());
-        tvDurationDetail.setText(mDetail.getDuration());
-        tvDayDetail.setText(mDetail.getDay());
-        tvStartDetail.setText(mDetail.getStart());
-        tvEndsDetail.setText(mDetail.getEnds());
-        tvPacketDetail.setText(mDetail.getPacket());
-        tvPersonDetail.setText(mDetail.getPerson());
-        tvPriceDetail.setText(mDetail.getPrice());
+    public void setData(ListScheduleModel data){
+        tvNameDetail.setText(data.getName());
+        tvUniversityDetail.setText(data.getUniversity());
+        tvLessonDetail.setText(data.getLesson());
+        tvMajorDetail.setText(data.getMajor());
+        tvDurationDetail.setText(data.getDuration());
+        tvDayDetail.setText(data.getDay());
+        tvStartDetail.setText(data.getStart());
+        tvEndsDetail.setText(data.getEnds());
+        tvPacketDetail.setText(data.getPacket());
+        tvPersonDetail.setText(data.getPerson());
+        tvPriceDetail.setText(data.getPrice());
     }
 
     public void initComponent(){
