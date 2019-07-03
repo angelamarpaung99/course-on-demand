@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.courseondemand.R;
 import com.example.courseondemand.ScheduleDetailActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,12 +32,11 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        mContext =viewGroup.getContext();
-
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.schedule_list_notes, viewGroup, false);
-
-        return new ViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+        mContext = parent.getContext();
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.schedule_list_notes, parent, false);
+        final ViewHolder mViewHolder = new ViewHolder(view);
+        return mViewHolder;
 
     }
 
@@ -56,7 +56,7 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
             public void onClick(View v) {
             Intent intent = new Intent(mContext, ScheduleDetailActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("key", scheduleModel);
+            bundle.putSerializable("key", (Serializable)scheduleModel);
             intent.putExtras(bundle);
             mContext.startActivity(intent);
             }

@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import com.example.courseondemand.R;
 import com.example.courseondemand.home_fragment_list.ListScheduleAdapter;
 import com.example.courseondemand.home_fragment_list.ListScheduleModel;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,27 +26,29 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
     private List<ListScheduleModel> mLists = new ArrayList<>();
 
-    private ImageView ivPersonDetail;
-    private TextView tvNameDetail, tvUniversityDetail, tvLessonDetail;
-    private TextView tvMajorDetail, tvDurationDetail, tvDayDetail, tvStartDetail;
-    private TextView tvEndsDetail , tvPacketDetail , tvPersonDetail, tvPriceDetail ;
-    private String id = getIntent().getStringExtra("key");
-
-    public ScheduleDetailActivity(List<ListScheduleModel> mLists) {
-        this.mLists = mLists;
-    }
-
-
+    private TextView tvNameDetail = findViewById(R.id.tvNameDetail);
+    private TextView tvUniversityDetail = findViewById(R.id.tvUniversityDetail);
+    private TextView tvLessonDetail = findViewById(R.id.tvLessonDetail);
+    private TextView tvMajorDetail = findViewById(R.id.tvMajorDetail);
+    private TextView tvDurationDetail = findViewById(R.id.tvDurationDetail);
+    private TextView tvDayDetail = findViewById(R.id.tvDayDetail);
+    private TextView   tvStartDetail = findViewById(R.id.tvStartDetail);
+    private TextView tvEndsDetail = findViewById(R.id.tvEndsDetail);
+    private TextView  tvPacketDetail = findViewById(R.id.tvPacketDetail);
+    private TextView tvPersonDetail = findViewById(R.id.tvPersonDetail);
+    private TextView tvPriceDetail = findViewById(R.id.tvPriceDetail);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_activity_detail);
 
-
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         ListScheduleModel data =  (ListScheduleModel)bundle.getSerializable("key");
+
+        initToolbar();
+        initComponent();
         setData(data);
     }
 
@@ -62,7 +67,7 @@ public class ScheduleDetailActivity extends AppCompatActivity {
     }
 
     public void initComponent(){
-        ivPersonDetail = findViewById(R.id.ivPersonDetail);
+//        ivPersonDetail = findViewById(R.id.ivPersonDetail);
         tvNameDetail = findViewById(R.id.tvNameDetail);
         tvUniversityDetail = findViewById(R.id.tvUniversityDetail);
         tvLessonDetail = findViewById(R.id.tvLessonDetail);
@@ -76,5 +81,16 @@ public class ScheduleDetailActivity extends AppCompatActivity {
         tvPriceDetail = findViewById(R.id.tvPriceDetail);
     }
 
+    public void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.schedule_detail_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
 
 }
