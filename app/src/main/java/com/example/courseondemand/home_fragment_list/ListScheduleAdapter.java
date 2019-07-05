@@ -56,7 +56,7 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
             public void onClick(View v) {
             Intent intent = new Intent(mContext, ScheduleDetailActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("key", (Serializable)scheduleModel);
+            bundle.putSerializable("key",scheduleModel);
             intent.putExtras(bundle);
             mContext.startActivity(intent);
             }

@@ -64,10 +64,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void initDummy() {
-        mLists.add(new ListScheduleModel("1", "Angela", "Monday", "Kalkulus", "08:30", "2 hours","Informatics", "one week", "one meeting", "A week", "1 Meeting", 80000, 1 ));
-        mLists.add(new ListScheduleModel("2", "Melissa", "Monday", "Kalkulus", "08:30", "2 hours","Informatics", "one week", "one meeting", "A week", "1 Meeting", 80000, 1 ));
-        mLists.add(new ListScheduleModel("3", "Claudia", "Monday", "Kalkulus", "08:30", "2 hours","Informatics", "one week", "one meeting", "A week", "1 Meeting", 80000, 1 ));
-        mLists.add(new ListScheduleModel("4", "Yolanda", "Monday", "Kalkulus", "08:30", "2 hours","Informatics", "one week", "one meeting", "A week", "1 Meeting", 80000, 1 ));
+        mLists.add(new ListScheduleModel("1", "Angela", "Monday", "Kalkulus 1","11:30", "12:00","1 hour", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
+        mLists.add(new ListScheduleModel("2", "Melissa", "Monday", "Kalkulus 1","11:30", "12:00","1 hour", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
+        mLists.add(new ListScheduleModel("3", "Claudia", "Monday", "Kalkulus 1","11:30", "12:00","1 hour", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
+        mLists.add(new ListScheduleModel("4", "Yolanda", "Monday", "Kalkulus 1","11:30", "12:00","1 hour", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
         mAdapter.notifyDataSetChanged();
     }
 

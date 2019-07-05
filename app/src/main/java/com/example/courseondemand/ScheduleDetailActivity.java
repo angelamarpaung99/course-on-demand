@@ -25,18 +25,7 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
 
     private List<ListScheduleModel> mLists = new ArrayList<>();
-
-    private TextView tvNameDetail = findViewById(R.id.tvNameDetail);
-    private TextView tvUniversityDetail = findViewById(R.id.tvUniversityDetail);
-    private TextView tvLessonDetail = findViewById(R.id.tvLessonDetail);
-    private TextView tvMajorDetail = findViewById(R.id.tvMajorDetail);
-    private TextView tvDurationDetail = findViewById(R.id.tvDurationDetail);
-    private TextView tvDayDetail = findViewById(R.id.tvDayDetail);
-    private TextView   tvStartDetail = findViewById(R.id.tvStartDetail);
-    private TextView tvEndsDetail = findViewById(R.id.tvEndsDetail);
-    private TextView  tvPacketDetail = findViewById(R.id.tvPacketDetail);
-    private TextView tvPersonDetail = findViewById(R.id.tvPersonDetail);
-    private TextView tvPriceDetail = findViewById(R.id.tvPriceDetail);
+    private TextView tvNameDetail, tvUniversityDetail, tvLessonDetail, tvMajorDetail, tvDurationDetail, tvDayDetail, tvStartDetail, tvEndsDetail, tvPacketDetail, tvPersonDetail, tvPriceDetail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,11 +34,11 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        ListScheduleModel data =  (ListScheduleModel)bundle.getSerializable("key");
+        ListScheduleModel mData =  (ListScheduleModel)bundle.getSerializable("key");
 
         initToolbar();
         initComponent();
-        setData(data);
+        setData(mData);
     }
 
     public void setData(ListScheduleModel data){
@@ -57,13 +46,13 @@ public class ScheduleDetailActivity extends AppCompatActivity {
         tvUniversityDetail.setText(data.getUniversity());
         tvLessonDetail.setText(data.getLesson());
         tvMajorDetail.setText(data.getMajor());
-        tvDurationDetail.setText(data.getDuration());
+        tvDurationDetail.setText(data.getTeachingduration());
         tvDayDetail.setText(data.getDay());
         tvStartDetail.setText(data.getStart());
         tvEndsDetail.setText(data.getEnds());
         tvPacketDetail.setText(data.getPacket());
-        tvPersonDetail.setText(data.getPerson());
-        tvPriceDetail.setText(data.getPrice());
+        tvPersonDetail.setText(Integer.toString(data.getPerson()));
+        tvPriceDetail.setText(Integer.toString(data.getPrice()));
     }
 
     public void initComponent(){
