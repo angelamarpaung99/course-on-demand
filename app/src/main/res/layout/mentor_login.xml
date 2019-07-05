@@ -66,7 +66,7 @@
             android:textSize="10dp" />
 
         <EditText
-            android:id="@+id/emailTxt"
+            android:id="@+id/txtEmail"
             android:layout_width="312dp"
             android:layout_height="52dp"
             android:layout_centerHorizontal="true"
@@ -106,7 +106,8 @@
             android:hint="Input Password"
             android:inputType="textPassword"
             android:textAlignment="center"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:id="@+id/txtPassword"/>
 
         <Button
             android:layout_width="312dp"
@@ -116,7 +117,8 @@
             android:layout_marginBottom="160dp"
             android:background="@drawable/login_button"
             android:text="Sign in"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:id="@+id/btnLogin"/>
 
 
     </RelativeLayout>
