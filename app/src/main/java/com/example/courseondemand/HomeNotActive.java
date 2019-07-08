@@ -44,7 +44,7 @@ public class HomeNotActive extends AppCompatActivity {
                             selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_fund:
-                            selectedFragment = new FundFragment();
+                            selectedFragment = new BalanceFragment();
                             break;
                         case R.id.nav_orders:
                             selectedFragment = new OrdersFragment();

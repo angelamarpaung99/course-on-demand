@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Balance"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="104dp"
+        android:layout_centerHorizontal="true"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="135dp"
+        android:layout_centerHorizontal="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp. "
+            android:textSize="24sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="27dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvBalance"
+            android:layout_marginTop="27dp"
+            android:textSize="24sp"
+            android:textColor="@android:color/black"
+            android:text="@string/fund"
+            />
+    </LinearLayout>
+    <Button
+        android:layout_width="312dp"
+        android:layout_height="36dp"
+        android:background="@drawable/login_button"
+        android:layout_marginTop="240dp"
+        android:text="Withdraw"
+        android:textColor="#FFFFFF"
+        android:id="@+id/btnWithdraw"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>

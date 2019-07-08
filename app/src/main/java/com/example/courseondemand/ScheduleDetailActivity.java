@@ -30,6 +30,9 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
 
     private List<ListScheduleModel> mLists = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
     private TextView tvNameDetail, tvUniversityDetail, tvLessonDetail, tvMajorDetail, tvDurationDetail, tvDayDetail, tvStartDetail, tvEndsDetail, tvPacketDetail, tvPersonDetail, tvPriceDetail;
 
     @Override
@@ -42,6 +45,7 @@ public class ScheduleDetailActivity extends AppCompatActivity {
         final ListScheduleModel mData =  (ListScheduleModel)bundle.getSerializable("key");
 
 
+
         initToolbar();
         initComponent();
         setData(mData);
@@ -51,29 +55,21 @@ public class ScheduleDetailActivity extends AppCompatActivity {
         btnDecline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
-                mLists.remove(mData);
+                showDialog(mData);
 
-//                private void initRecyclerView(View v) {
-//                    mRecyclerView = v.findViewById(R.id.rvSchedule);
-//                    mAdapter = new ListScheduleAdapter(mLists);
-//                    mLayoutManager = new LinearLayoutManager(v.getContext());
-//                    mRecyclerView.setAdapter(mAdapter);
-//                    mRecyclerView.setLayoutManager(mLayoutManager);
-//                }
             }
         });
     }
 
-    private void showDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure to decline this order? ");
+    private void showDialog(final ListScheduleModel mData){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to decline this order? ");
         builder.setCancelable(false);
         builder.setPositiveButton("Decline", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-            finish();
+                deleteSelectedItem(mData);
+                finish();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -87,7 +83,9 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
     }
 
-
+    private void deleteSelectedItem(ListScheduleModel mData) {
+        mLists.remove(mData);
+    }
 
     public void setData(ListScheduleModel data){
         tvNameDetail.setText(data.getName());

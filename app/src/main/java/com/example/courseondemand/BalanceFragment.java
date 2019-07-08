@@ -7,11 +7,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-public class FundFragment extends Fragment {
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BalanceFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fund, null);
+        View v = inflater.inflate(R.layout.fragment_balance, null);
+        TextView tvBalance = v.findViewById(R.id.tvBalance);
+        tvBalance.setText("155000");
+        return v;
     }
 }
