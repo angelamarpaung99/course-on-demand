@@ -85,6 +85,20 @@
         <ImageView
             style="@style/Divider"
             android:background="@android:color/darker_gray"/>
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@android:color/white"
+            android:paddingLeft="16dp"
+            android:text="Logout"
+            android:gravity="left|center_vertical"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            />
+        <ImageView
+            style="@style/Divider"
+            android:background="@android:color/darker_gray"/>
 
 
 

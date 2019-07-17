@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "566609970295",
+    "firebase_url": "https://courseondemand-master.firebaseio.com",
+    "project_id": "courseondemand-master",
+    "storage_bucket": "courseondemand-master.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566609970295:android:d2dbf5d86894459c",
+        "android_client_info": {
+          "package_name": "com.example.courseondemand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566609970295-jj3nsk29juajdnontrq7nod348k7enbp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.courseondemand",
+            "certificate_hash": "ce5b8d37a2d0e3ebf0cbc886ec711b3aeee5cbb9"
+          }
+        },
+        {
+          "client_id": "566609970295-3rpa0kccj046jr7agpnprn7n8unks2fs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC80VQ23-xdvpHSxWaUXuEmZwUDqN3QHNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566609970295-3rpa0kccj046jr7agpnprn7n8unks2fs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
