@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.support.v7.widget.Toolbar;
@@ -82,4 +83,5 @@ public class HomeNotActive extends AppCompatActivity {
         inflater.inflate(R.menu.menu_notactive, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
 }

@@ -23,10 +23,16 @@ import java.util.List;
 
 public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapter.ViewHolder> {
 
-    private List<ListScheduleModel> mLists = new ArrayList<>();
+//    private List<ListScheduleModel> mLists = new ArrayList<>();
+    private List<Order>  mLists = new ArrayList<>();
     private Context mContext;
 
-    public ListScheduleAdapter(List<ListScheduleModel> mLists) {
+//    public ListScheduleAdapter(List<ListScheduleModel> mLists) {
+//        this.mLists = mLists;
+//    }
+
+
+    public ListScheduleAdapter(List<Order> mLists) {
         this.mLists = mLists;
     }
 
@@ -44,19 +50,27 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final int position = i;
 
-        final ListScheduleModel scheduleModel = mLists.get(position);
-        viewHolder.name.setText(scheduleModel.getName());
-        viewHolder.lesson.setText(scheduleModel.getLesson());
-        viewHolder.start.setText(scheduleModel.getStart());
-        viewHolder.day.setText(scheduleModel.getDay());
-        viewHolder.duration.setText(scheduleModel.getDuration());
+//        final ListScheduleModel scheduleModel = mLists.get(position);
+
+//        viewHolder.name.setText(scheduleModel.getName());
+//        viewHolder.lesson.setText(scheduleModel.getLesson());
+//        viewHolder.start.setText(scheduleModel.getStart());
+//        viewHolder.day.setText(scheduleModel.getDay());
+//        viewHolder.duration.setText(scheduleModel.getDuration());
+
+        final Order scheduleModel = mLists.get(position);
+        viewHolder.name.setText(scheduleModel.getStudent().getName());
+        viewHolder.lesson.setText(scheduleModel.getLesson().getLessonName());
+        viewHolder.start.setText(scheduleModel.getTeach().getStartTime());
+        viewHolder.day.setText(scheduleModel.getTeach().getDay());
+        viewHolder.duration.setText(scheduleModel.getTeach().getTeachDuration());
 
         viewHolder.cvScheduleListNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             Intent intent = new Intent(mContext, ScheduleDetailActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("key",scheduleModel);
+            bundle.putSerializable("key", (Serializable) scheduleModel);
             intent.putExtras(bundle);
             mContext.startActivity(intent);
             }
