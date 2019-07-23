@@ -24,15 +24,12 @@ import java.util.List;
 public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapter.ViewHolder> {
 
 //    private List<ListScheduleModel> mLists = new ArrayList<>();
-    private List<Order>  mLists = new ArrayList<>();
+    private List<OrderResponse> mLists = new ArrayList<>();
     private Context mContext;
 
-//    public ListScheduleAdapter(List<ListScheduleModel> mLists) {
-//        this.mLists = mLists;
-//    }
 
 
-    public ListScheduleAdapter(List<Order> mLists) {
+    public ListScheduleAdapter(List<OrderResponse> mLists) {
         this.mLists = mLists;
     }
 
@@ -51,6 +48,7 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         final int position = i;
 
 //        final ListScheduleModel scheduleModel = mLists.get(position);
+        final OrderResponse scheduleModel = mLists.get(position);
 
 //        viewHolder.name.setText(scheduleModel.getName());
 //        viewHolder.lesson.setText(scheduleModel.getLesson());
@@ -58,12 +56,11 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
 //        viewHolder.day.setText(scheduleModel.getDay());
 //        viewHolder.duration.setText(scheduleModel.getDuration());
 
-        final Order scheduleModel = mLists.get(position);
-        viewHolder.name.setText(scheduleModel.getStudent().getName());
-        viewHolder.lesson.setText(scheduleModel.getLesson().getLessonName());
-        viewHolder.start.setText(scheduleModel.getTeach().getStartTime());
-        viewHolder.day.setText(scheduleModel.getTeach().getDay());
-        viewHolder.duration.setText(scheduleModel.getTeach().getTeachDuration());
+        viewHolder.name.setText(scheduleModel.student.getName());
+        viewHolder.lesson.setText(scheduleModel.lesson.getLessonName());
+        viewHolder.start.setText(scheduleModel.teach.getStartTime());
+        viewHolder.day.setText(scheduleModel.teach.getDay());
+        viewHolder.duration.setText(scheduleModel.teach.getTeachDuration());
 
         viewHolder.cvScheduleListNotes.setOnClickListener(new View.OnClickListener() {
             @Override

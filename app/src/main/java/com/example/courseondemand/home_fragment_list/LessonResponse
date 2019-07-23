@@ -1,5 +1,0 @@
-
-public class LessonResponse {
-    public String lessonMajor;
-    public String lessonName;
-}

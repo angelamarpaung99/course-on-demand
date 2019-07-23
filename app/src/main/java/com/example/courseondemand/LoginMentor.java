@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.courseondemand.home_fragment_list.ListScheduleModel;
+import com.example.courseondemand.home_fragment_list.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -46,6 +47,8 @@ public class LoginMentor extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.mentor_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+
 
 
         if (firebaseAuth.getCurrentUser() != null){
