@@ -34,8 +34,6 @@ public class HomeNotActive extends AppCompatActivity {
             startActivity(new Intent(this, LoginMentor.class));
         }
 
-//        FirebaseUser user = firebaseAuth.getCurrentUser();
-
 
         final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new HomeFragment());

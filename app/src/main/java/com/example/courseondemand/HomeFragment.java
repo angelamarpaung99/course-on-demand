@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
 
     private void getSchedule() {
        db.collection("orders")
-                .whereEqualTo("tentor.uid", uid)
+                .whereEqualTo("tentor.UID", uid)
                 .get()
                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                    @Override
@@ -115,6 +115,9 @@ public class HomeFragment extends Fragment {
 
 
     }
+
+
+
 
 
 //    private void initDummy() {
