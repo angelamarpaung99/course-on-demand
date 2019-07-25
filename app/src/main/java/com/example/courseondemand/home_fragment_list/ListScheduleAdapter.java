@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.courseondemand.R;
 import com.example.courseondemand.ScheduleDetailActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,7 +28,9 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
 //    private List<ListScheduleModel> mLists = new ArrayList<>();
     private List<OrderResponse> mLists = new ArrayList<>();
     private Context mContext;
-
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firestore;
+    private String uid;
 
 
     public ListScheduleAdapter(List<OrderResponse> mLists) {
@@ -36,6 +40,9 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+        firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+
         mContext = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.schedule_list_notes, parent, false);
         final ViewHolder mViewHolder = new ViewHolder(view);
@@ -43,31 +50,28 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
 
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final int position = i;
-
-//        final ListScheduleModel scheduleModel = mLists.get(position);
         final OrderResponse scheduleModel = mLists.get(position);
 
-//        viewHolder.name.setText(scheduleModel.getName());
-//        viewHolder.lesson.setText(scheduleModel.getLesson());
-//        viewHolder.start.setText(scheduleModel.getStart());
-//        viewHolder.day.setText(scheduleModel.getDay());
-//        viewHolder.duration.setText(scheduleModel.getDuration());
-
-        viewHolder.name.setText(scheduleModel.student.getName());
-        viewHolder.lesson.setText(scheduleModel.lesson.getLessonName());
-        viewHolder.start.setText(scheduleModel.teach.getStartTime());
-        viewHolder.day.setText(scheduleModel.teach.getDay());
-        viewHolder.duration.setText(scheduleModel.teach.getTeachDuration());
+        viewHolder.name.setText(scheduleModel.student.name);
+        viewHolder.lesson.setText(scheduleModel.lesson.lessonName);
+        viewHolder.start.setText(scheduleModel.teach.startTime);
+        viewHolder.day.setText(scheduleModel.teach.day);
+        viewHolder.duration.setText(scheduleModel.teach.teachDuration);
 
         viewHolder.cvScheduleListNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             Intent intent = new Intent(mContext, ScheduleDetailActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("key", (Serializable) scheduleModel);
+            bundle.putSerializable("key", scheduleModel);
+//                uid = scheduleModel.getId();
+//                intent.putExtra("key", uid);
+
             intent.putExtras(bundle);
             mContext.startActivity(intent);
             }

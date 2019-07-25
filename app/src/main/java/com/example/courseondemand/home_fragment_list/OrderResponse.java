@@ -1,6 +1,11 @@
 package com.example.courseondemand.home_fragment_list;
 
-public class OrderResponse {
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
+
+public class OrderResponse implements Serializable {
+    @Exclude public String id;
     public Long entryDate;
     public OrderLesson lesson;
     public OrderPacket packet;
@@ -11,6 +16,14 @@ public class OrderResponse {
     public OrderUser tentor;
 
     public OrderResponse() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public OrderResponse(Long entryDate, OrderLesson lesson, OrderPacket packet, OrderPayment payment, int status, OrderUser student, OrderTeach teach, OrderUser tentor) {
@@ -24,7 +37,7 @@ public class OrderResponse {
         this.tentor = tentor;
     }
 
-    static class OrderLesson {
+    static class OrderLesson implements Serializable {
         public String lessonId;
         public String lessonMajor;
         public String lessonName;
@@ -39,7 +52,7 @@ public class OrderResponse {
         }
     }
 
-    static class OrderPacket {
+    static class OrderPacket implements Serializable {
         public String meeting;
         public String person;
 
@@ -53,7 +66,7 @@ public class OrderResponse {
 
     }
 
-    static class OrderPayment {
+    static class OrderPayment implements Serializable {
         public String method;
         public Long price;
 
@@ -66,7 +79,7 @@ public class OrderResponse {
         }
     }
 
-    static class OrderUser {
+    static class OrderUser implements Serializable{
         public String UID;
         public String major;
         public String name;
@@ -83,9 +96,49 @@ public class OrderResponse {
             this.picture = picture;
             this.university = university;
         }
+
+        public String getUID() {
+            return UID;
+        }
+
+        public void setUID(String UID) {
+            this.UID = UID;
+        }
+
+        public String getMajor() {
+            return major;
+        }
+
+        public void setMajor(String major) {
+            this.major = major;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getPicture() {
+            return picture;
+        }
+
+        public void setPicture(String picture) {
+            this.picture = picture;
+        }
+
+        public String getUniversity() {
+            return university;
+        }
+
+        public void setUniversity(String university) {
+            this.university = university;
+        }
     }
 
-    static class OrderTeach {
+    static class OrderTeach implements Serializable{
         public String day;
         public String endTime;
         public String startTime;

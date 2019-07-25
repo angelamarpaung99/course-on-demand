@@ -46,20 +46,22 @@
             android:textSize="36sp"
             android:textStyle="bold" />
 
+
         <View
             android:id="@+id/emailBox"
-            android:layout_width="312dp"
-            android:layout_height="52dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="268dp"
-            android:layout_marginBottom="320dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginBottom="409dp"
             android:background="@drawable/rectangle" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="274dp"
+            android:layout_marginTop="271dp"
             android:layout_marginBottom="354dp"
             android:text="Email"
             android:textColor="#000000"
@@ -67,11 +69,12 @@
 
         <EditText
             android:id="@+id/txtEmail"
-            android:layout_width="312dp"
-            android:layout_height="52dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="275dp"
-            android:layout_marginBottom="320dp"
+            android:paddingLeft="118dp"
+            android:paddingRight="118dp"
+            android:layout_marginTop="282dp"
             android:backgroundTint="@color/colorPrimary"
             android:hint="Input Email"
             android:textAlignment="center"
@@ -79,29 +82,31 @@
 
         <View
             android:id="@+id/passwordBox"
-            android:layout_width="312dp"
-            android:layout_height="52dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="90dp"
             android:layout_marginTop="356dp"
-            android:layout_marginBottom="232dp"
+            android:layout_marginBottom="320dp"
             android:background="@drawable/rectangle" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="363dp"
+            android:layout_marginTop="360dp"
             android:layout_marginBottom="265dp"
             android:text="Password"
             android:textColor="#000000"
             android:textSize="10dp" />
 
         <EditText
-            android:layout_width="312dp"
-            android:layout_height="52dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="360dp"
-            android:layout_marginBottom="232dp"
+            android:layout_marginTop="371dp"
+            android:paddingLeft="98dp"
+            android:paddingRight="98dp"
             android:backgroundTint="@color/colorPrimary"
             android:hint="Input Password"
             android:inputType="textPassword"
@@ -110,11 +115,13 @@
             android:id="@+id/txtPassword"/>
 
         <Button
-            android:layout_width="312dp"
-            android:layout_height="36dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="444dp"
             android:layout_marginBottom="160dp"
+            android:paddingLeft="132dp"
+            android:paddingRight="132dp"
             android:background="@drawable/login_button"
             android:text="Sign in"
             android:textColor="#FFFFFF"

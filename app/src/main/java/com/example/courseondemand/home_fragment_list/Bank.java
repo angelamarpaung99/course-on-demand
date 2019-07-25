@@ -1,6 +1,8 @@
 package com.example.courseondemand.home_fragment_list;
 
-public class Bank {
+import java.io.Serializable;
+
+public class Bank implements Serializable {
     private String bankName, bankNumber, ownerName;
     private int bankCode;
 

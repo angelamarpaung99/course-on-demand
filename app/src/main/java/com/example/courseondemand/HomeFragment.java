@@ -59,6 +59,8 @@ public class HomeFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
 
+
+
         switchActive.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -106,6 +108,7 @@ public class HomeFragment extends Fragment {
                        if (task.isSuccessful()){
                            for (QueryDocumentSnapshot document : task.getResult()){
                                OrderResponse order = document.toObject(OrderResponse.class);
+                               order.setId(document.getId());
                                mOrder.add(order);
                            }
                            mAdapter.notifyDataSetChanged();

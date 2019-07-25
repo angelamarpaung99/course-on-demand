@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,20 +21,34 @@ import android.widget.Toast;
 import com.example.courseondemand.R;
 import com.example.courseondemand.home_fragment_list.ListScheduleAdapter;
 import com.example.courseondemand.home_fragment_list.ListScheduleModel;
+import com.example.courseondemand.home_fragment_list.OrderResponse;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firestore.v1beta1.StructuredQuery;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScheduleDetailActivity extends AppCompatActivity {
 
 
-    private List<ListScheduleModel> mLists = new ArrayList<>();
+//    private ArrayList<OrderResponse> mData = new ArrayList<>();
+    private OrderResponse mData;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private TextView tvNameDetail, tvUniversityDetail, tvLessonDetail, tvMajorDetail, tvDurationDetail, tvDayDetail, tvStartDetail, tvEndsDetail, tvPacketDetail, tvPersonDetail, tvPriceDetail;
+    private String uid;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,9 +57,11 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        final ListScheduleModel mData =  (ListScheduleModel)bundle.getSerializable("key");
+        mData =  (OrderResponse) bundle.getSerializable("key");
 
+        uid = bundle.getString("key");
 
+        db = FirebaseFirestore.getInstance();
 
         initToolbar();
         initComponent();
@@ -52,23 +69,43 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
         Button btnAccept = findViewById(R.id.btnAccept);
         Button btnDecline = findViewById(R.id.btnDecline);
-        btnDecline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog(mData);
-
-            }
-        });
+//        btnDecline.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showDialog(mData);
+//
+//            }
+//        });
     }
 
-    private void showDialog(final ListScheduleModel mData){
+//    private ArrayList<OrderResponse> getData(String uid) {
+//        CollectionReference order = db.collection("orders");
+//        order.whereEqualTo("student.UID", uid)
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+//                            OrderResponse detail = documentSnapshot.toObject(OrderResponse.class);
+//                            mLists.add(detail);
+//                        }
+//                    }
+//                });
+//        mAdapter.notifyDataSetChanged();
+//        return mLists;
+//    }
+//
+
+
+
+    private void showDialog(final OrderResponse mData){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to decline this order? ");
         builder.setCancelable(false);
         builder.setPositiveButton("Decline", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                deleteSelectedItem(mData);
+//                deleteSelectedItem(mData);
                 finish();
             }
         });
@@ -83,22 +120,22 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
     }
 
-    private void deleteSelectedItem(ListScheduleModel mData) {
-        mLists.remove(mData);
-    }
+//    private void deleteSelectedItem(OrderResponse mData) {
+//        mData.remove(mData);}
 
-    public void setData(ListScheduleModel data){
-        tvNameDetail.setText(data.getName());
-        tvUniversityDetail.setText(data.getUniversity());
-        tvLessonDetail.setText(data.getLesson());
-        tvMajorDetail.setText(data.getMajor());
-        tvDurationDetail.setText(data.getTeachingduration());
-        tvDayDetail.setText(data.getDay());
-        tvStartDetail.setText(data.getStart());
-        tvEndsDetail.setText(data.getEnds());
-        tvPacketDetail.setText(data.getPacket());
-        tvPersonDetail.setText(Integer.toString(data.getPerson()));
-        tvPriceDetail.setText(Integer.toString(data.getPrice()));
+
+    public void setData(OrderResponse mData){
+        tvNameDetail.setText(mData.student);
+        tvUniversityDetail.setText();
+        tvLessonDetail.setText();
+        tvMajorDetail.setText();
+        tvDurationDetail.setText();
+        tvDayDetail.setText();
+        tvStartDetail.setText();
+        tvEndsDetail.setText();
+        tvPacketDetail.setText();
+        tvPersonDetail.setText();
+        tvPriceDetail.setText();
     }
 
     public void initComponent(){

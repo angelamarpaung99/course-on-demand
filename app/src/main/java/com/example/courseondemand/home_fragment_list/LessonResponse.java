@@ -1,6 +1,8 @@
 package com.example.courseondemand.home_fragment_list;
 
-public class LessonResponse {
+import java.io.Serializable;
+
+public class LessonResponse implements Serializable {
     public String lessonMajor;
     public String lessonName;
 

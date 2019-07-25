@@ -17,7 +17,7 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class AccountFragment extends Fragment {
+public class AccountFragment extends Fragment implements View.OnClickListener {
 
     private FirebaseAuth firebaseAuth;
     private Button btnLogout;
@@ -31,6 +31,8 @@ public class AccountFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        btnLogout.setOnClickListener(this);
+
 
         return v;
     }
@@ -41,4 +43,11 @@ public class AccountFragment extends Fragment {
         super.onCreateOptionsMenu(menu,inflater);
     }
 
+
+    @Override
+    public void onClick(View view) {
+        if (view == btnLogout){
+            firebaseAuth.signOut();
+        }
+    }
 }
