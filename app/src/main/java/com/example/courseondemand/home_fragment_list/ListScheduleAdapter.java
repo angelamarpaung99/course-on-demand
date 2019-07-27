@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.courseondemand.R;
 import com.example.courseondemand.ScheduleDetailActivity;
+import com.example.courseondemand.Tools;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,7 +33,6 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
     private FirebaseFirestore firestore;
     private String uid;
 
-
     public ListScheduleAdapter(List<OrderResponse> mLists) {
         this.mLists = mLists;
     }
@@ -47,10 +47,7 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.schedule_list_notes, parent, false);
         final ViewHolder mViewHolder = new ViewHolder(view);
         return mViewHolder;
-
     }
-
-
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
@@ -62,22 +59,18 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         viewHolder.start.setText(scheduleModel.teach.startTime);
         viewHolder.day.setText(scheduleModel.teach.day);
         viewHolder.duration.setText(scheduleModel.teach.teachDuration);
+        Tools.setImage(viewHolder.ivScheduleListNotes,scheduleModel.student.picture);
 
         viewHolder.cvScheduleListNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             Intent intent = new Intent(mContext, ScheduleDetailActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("key", scheduleModel);
-//                uid = scheduleModel.getId();
-//                intent.putExtra("key", uid);
-
-            intent.putExtras(bundle);
+            uid = scheduleModel.getId();
+            intent.putExtra("key", uid);
             mContext.startActivity(intent);
             }
         });
     }
-
 
     @Override
     public int getItemCount() {
@@ -101,8 +94,6 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
             day = itemView.findViewById(R.id.tvDay);
             start = itemView.findViewById(R.id.tvStart);
             duration = itemView.findViewById(R.id.tvDuration);
-
         }
     }
-
 }

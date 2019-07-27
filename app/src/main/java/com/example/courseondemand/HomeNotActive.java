@@ -13,12 +13,17 @@ import android.view.MenuInflater;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.courseondemand.home_fragment_list.OrderResponse;
+import com.google.android.gms.nearby.connection.Connections;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 
 public class HomeNotActive extends AppCompatActivity {
 
+    private ArrayList<OrderResponse> acceptedOrders = new ArrayList<>();
     FirebaseAuth firebaseAuth;
 
 
@@ -27,12 +32,24 @@ public class HomeNotActive extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
 
+        Intent intent = getIntent();
+        if (intent.hasExtra("acceptedOrders")){
+            acceptedOrders = (ArrayList<OrderResponse>) intent.getSerializableExtra("acceptedOrders");
+
+            Bundle bundle = new Bundle();
+            Fragment fragment = new OrdersFragment();
+
+            bundle.putSerializable("acceptedOrders", acceptedOrders);
+            fragment.setArguments(bundle);
+        }
+
         firebaseAuth = FirebaseAuth.getInstance();
 
         if (firebaseAuth.getCurrentUser() == null){
             finish();
             startActivity(new Intent(this, LoginMentor.class));
         }
+
 
 
         final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

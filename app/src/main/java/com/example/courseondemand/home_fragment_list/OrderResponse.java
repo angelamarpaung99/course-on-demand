@@ -1,10 +1,13 @@
 package com.example.courseondemand.home_fragment_list;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.database.Exclude;
 
 import java.io.Serializable;
 
-public class OrderResponse implements Serializable {
+public class OrderResponse implements Serializable  {
     @Exclude public String id;
     public Long entryDate;
     public OrderLesson lesson;
@@ -36,6 +39,7 @@ public class OrderResponse implements Serializable {
         this.teach = teach;
         this.tentor = tentor;
     }
+
 
     static class OrderLesson implements Serializable {
         public String lessonId;
@@ -97,45 +101,7 @@ public class OrderResponse implements Serializable {
             this.university = university;
         }
 
-        public String getUID() {
-            return UID;
-        }
 
-        public void setUID(String UID) {
-            this.UID = UID;
-        }
-
-        public String getMajor() {
-            return major;
-        }
-
-        public void setMajor(String major) {
-            this.major = major;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getPicture() {
-            return picture;
-        }
-
-        public void setPicture(String picture) {
-            this.picture = picture;
-        }
-
-        public String getUniversity() {
-            return university;
-        }
-
-        public void setUniversity(String university) {
-            this.university = university;
-        }
     }
 
     static class OrderTeach implements Serializable{

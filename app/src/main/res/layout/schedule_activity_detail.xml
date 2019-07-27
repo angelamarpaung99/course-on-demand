@@ -33,7 +33,6 @@
                     android:id="@+id/tvNameDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Emily Rocherfort"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:layout_marginTop="75dp"
@@ -42,7 +41,6 @@
                     android:id="@+id/tvUniversityDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Telkom University"
                     android:layout_marginLeft="10.32dp"
                     android:textColor="@android:color/white"
                     android:textSize="14dp"/>
@@ -93,7 +91,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="23dp"
                     android:layout_marginTop="9dp"
-                    android:text="Kalkulus 1"
                     android:textColor="#3586FF"
                     android:textSize="18sp" />
 
@@ -104,7 +101,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="19dp"
                     android:gravity="right"
-                    android:text="Informatika"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -134,7 +130,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="23dp"
                     android:layout_marginTop="9dp"
-                    android:text="A Week"
                     android:textColor="#3586FF"
                     android:textSize="18dp" />
 
@@ -144,7 +139,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="150dp"
                     android:layout_marginTop="10dp"
-                    android:text="Monday"
                     android:textSize="14sp" />
 
                 <TextView
@@ -152,7 +146,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="11:30"
                     android:textSize="14sp"
                     android:layout_marginLeft="8dp"
                     />
@@ -168,8 +161,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="19dp"
-                    android:layout_marginTop="10dp"
-                    android:text="12:00"/>
+                    android:layout_marginTop="10dp" />
             </LinearLayout>
 
             <ImageView
@@ -199,7 +191,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="23dp"
                     android:layout_marginTop="11dp"
-                    android:text="1 Meeting"
+                    android:textColor="#3586FF"
+                    android:textSize="18dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="11dp"
+                    android:text="Meeting"
                     android:textColor="#3586FF"
                     android:textSize="18dp" />
 
@@ -210,7 +209,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:layout_marginRight="19dp"
-                    android:text="1"
                     android:textColor="#757575"
                     android:textSize="14sp" />
 
@@ -268,7 +266,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="19dp"
-                    android:text="80000"
                     android:textSize="24sp"
                     android:gravity="right"
                     android:layout_marginTop="15dp"

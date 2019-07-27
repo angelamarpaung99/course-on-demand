@@ -34,9 +34,6 @@ import java.util.List;
 import static android.support.constraint.Constraints.TAG;
 
 public class HomeFragment extends Fragment {
-
-//    private List<ListScheduleModel> mLists = new ArrayList<>();
-
     private List<OrderResponse> mOrder = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
@@ -54,12 +51,8 @@ public class HomeFragment extends Fragment {
         final Switch switchActive = v.findViewById(R.id.switchActive1);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         uid = firebaseAuth.getUid();
-
         db = FirebaseFirestore.getInstance();
-
-
 
         switchActive.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
@@ -72,16 +65,12 @@ public class HomeFragment extends Fragment {
                     listNotEmpty.setVisibility(v.VISIBLE);
                     initRecyclerView(v);
                     getSchedule();
-//                    initDummy();
-
-
                 } else {
                     switchActive.setText("Not Active  ");
                     RecyclerView listNotEmpty = v.findViewById(R.id.rvSchedule);
                     LinearLayout listEmpty = v.findViewById(R.id.llnoschedule);
                     listNotEmpty.setVisibility(v.INVISIBLE);
                     listEmpty.setVisibility(v.VISIBLE);
-
                 }
             }
         });
@@ -91,11 +80,9 @@ public class HomeFragment extends Fragment {
     private void initRecyclerView(View v) {
         mRecyclerView = v.findViewById(R.id.rvSchedule);
         mAdapter = new ListScheduleAdapter(mOrder);
-//        mAdapter = new ListScheduleAdapter(mLists);
         mLayoutManager = new LinearLayoutManager(v.getContext());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
     }
 
     private void getSchedule() {
@@ -115,22 +102,5 @@ public class HomeFragment extends Fragment {
                        }
                    }
                });
-
-
     }
-
-
-
-
-
-//    private void initDummy() {
-//        mLists.add(new ListScheduleModel("1", "Angela", "Monday", "Kalkulus 1","11:30", "12:00","1 hour", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
-//        mLists.add(new ListScheduleModel("2", "Melissa", "Monday", "Kalkulus 1","11:30", "12:00","1 hour", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
-//        mLists.add(new ListScheduleModel("3", "Claudia", "Monday", "Kalkulus 1","11:30", "12:00","1 hour", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
-//        mLists.add(new ListScheduleModel("4", "Yolanda", "Monday", "Kalkulus 1","11:30", "12:00","1 hour", "Informatics", "Telkom University", "A week", "1 Meeting", 80000, 1));
-//        mAdapter.notifyDataSetChanged();
-//    }
-
-
-
 }
