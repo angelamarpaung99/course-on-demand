@@ -2,7 +2,6 @@ package com.example.courseondemand.home_fragment_list;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -18,31 +17,27 @@ import com.example.courseondemand.Tools;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//class yang digunakan sebagai adapter dari recycler view
+public class OrdersAdapter  extends RecyclerView.Adapter<OrdersAdapter.ViewHolder> {
 
-public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapter.ViewHolder> {
-    private List<OrderResponse> mLists = new ArrayList<>();
+//    private List<ListScheduleModel> mLists = new ArrayList<>();
+    private List<OrderAccepted> mLists = new ArrayList<>();
     private Context mContext;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
     private String uid;
 
-    public ListScheduleAdapter(List<OrderResponse> mLists) {
+    public OrdersAdapter(List<OrderAccepted> mLists) {
         this.mLists = mLists;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        firebaseAuth = FirebaseAuth.getInstance();
-        firestore = FirebaseFirestore.getInstance();
-
-
         mContext = parent.getContext();
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.schedule_list_notes, parent, false);
         final ViewHolder mViewHolder = new ViewHolder(view);
         return mViewHolder;
@@ -51,22 +46,22 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final int position = i;
-        final OrderResponse scheduleModel = mLists.get(position);
+        final OrderAccepted scheduleModel1 = mLists.get(position);
 
-        viewHolder.name.setText(scheduleModel.student.name);
-        viewHolder.lesson.setText(scheduleModel.lesson.lessonName);
-        viewHolder.start.setText(scheduleModel.teach.startTime);
-        viewHolder.day.setText(scheduleModel.teach.day);
-        viewHolder.duration.setText(scheduleModel.teach.teachDuration);
-        Tools.setImage(viewHolder.ivScheduleListNotes,scheduleModel.student.picture);
+        viewHolder.name.setText(scheduleModel1.name);
+        viewHolder.lesson.setText(scheduleModel1.lesson);
+        viewHolder.start.setText(scheduleModel1.start);
+        viewHolder.day.setText(scheduleModel1.day);
+        viewHolder.duration.setText(scheduleModel1.lesson);
+        Tools.setImage(viewHolder.ivScheduleListNotes,scheduleModel1.url);
 
         viewHolder.cvScheduleListNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent intent = new Intent(mContext, ScheduleDetailActivity.class);
-            uid = scheduleModel.getId();
-            intent.putExtra("key", uid);
-            mContext.startActivity(intent);
+//                Intent intent = new Intent(mContext, ScheduleDetailActivity.class);
+//                uid = scheduleModel.getId();
+//                intent.putExtra("key", uid);
+//                mContext.startActivity(intent);
             }
         });
     }
@@ -95,4 +90,6 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
             duration = itemView.findViewById(R.id.tvDuration);
         }
     }
+
+
 }

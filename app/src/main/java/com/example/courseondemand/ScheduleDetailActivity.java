@@ -16,9 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.courseondemand.home_fragment_list.OrderAccepted;
 import com.example.courseondemand.home_fragment_list.OrderResponse;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,14 +30,14 @@ import java.util.ArrayList;
 import static android.support.constraint.Constraints.TAG;
 
 public class ScheduleDetailActivity extends AppCompatActivity {
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db;
     private String uid;
     private DocumentReference studentRef;
     private TextView tvNameDetail, tvUniversityDetail, tvLessonDetail, tvMajorDetail, tvDurationDetail, tvDayDetail, tvStartDetail, tvEndsDetail,
             tvPacketDetail, tvPersonDetail, tvPriceDetail;
     private ImageView ivPersonDetail;
     private OrderResponse order;
-    private ArrayList<OrderResponse> acceptedOrders = new ArrayList<>();
+    private ArrayList<OrderAccepted> mOrder = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         uid = intent.getStringExtra("key");
+
+        db = FirebaseFirestore.getInstance();
         studentRef = db.collection("orders").document(uid);
 
         initToolbar();
@@ -79,18 +83,18 @@ public class ScheduleDetailActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(final DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()){
-                            String name = documentSnapshot.getString("student.name");
-                            String university = documentSnapshot.getString("student.university");
-                            String lesson = documentSnapshot.getString("lesson.lessonName");
-                            String major = documentSnapshot.getString("student.major");
-                            String duration = documentSnapshot.getString("teach.teachPeriod");
-                            String day = documentSnapshot.getString("teach.day");
-                            String start = documentSnapshot.getString("teach.startTime");
-                            String ends = documentSnapshot.getString("teach.endTime");
-                            String packet = documentSnapshot.getString("packet.meeting");
-                            String person = documentSnapshot.getString("packet.person");
-                            String price = documentSnapshot.getLong("payment.price").toString();
-                            String url = documentSnapshot.getString("student.picture");
+                            final String name = documentSnapshot.getString("student.name");
+                            final String university = documentSnapshot.getString("student.university");
+                            final String lesson = documentSnapshot.getString("lesson.lessonName");
+                            final String major = documentSnapshot.getString("student.major");
+                            final String duration = documentSnapshot.getString("teach.teachPeriod");
+                            final String day = documentSnapshot.getString("teach.day");
+                            final String start = documentSnapshot.getString("teach.startTime");
+                            final String ends = documentSnapshot.getString("teach.endTime");
+                            final String packet = documentSnapshot.getString("packet.meeting");
+                            final String person = documentSnapshot.getString("packet.person");
+                            final String price = documentSnapshot.getLong("payment.price").toString();
+                            final String url = documentSnapshot.getString("student.picture");
 
                             tvNameDetail.setText(name);
                             tvUniversityDetail.setText(university);
@@ -110,10 +114,14 @@ public class ScheduleDetailActivity extends AppCompatActivity {
                             btnAccept.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    order = documentSnapshot.toObject(OrderResponse.class);
-                                    acceptedOrders.add(order);
+//                                    order = documentSnapshot.toObject(OrderResponse.class);
+//                                    mOrder.add(order);
+//                                    Intent intent = new Intent(ScheduleDetailActivity.this, HomeNotActive.class);
+//                                    intent.putExtra("key", mOrder);
+//                                    startActivity(intent);
+                                    mOrder.add(new OrderAccepted(uid, name, university, lesson, major, duration,day, start, ends, packet, person, price, url));
                                     Intent intent = new Intent(ScheduleDetailActivity.this, HomeNotActive.class);
-                                    intent.putExtra("acceptedOrders", acceptedOrders);
+                                    intent.putExtra("orderlist", mOrder);
                                     startActivity(intent);
 
                                     //habis di accept harusnya delete dari database
@@ -126,19 +134,25 @@ public class ScheduleDetailActivity extends AppCompatActivity {
                                 }
                             });
 
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Document does not exist", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Error! ", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, e.toString());
                     }
                 });
     }
+
+//    private void getStudent(){
+//        studentRef.get()
+//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                        if (documentSnapshot.exists()){
+//                            OrderResponse dbOrder = documentSnapshot.toObject(OrderResponse.class);
+//                            mOrder.add(dbOrder);
+//
+//                            tvNameDetail.setText(mOrder.get(0).student.);
+//                        }
+//                    }
+//                })
+//    }
 
     private void showDialog(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);

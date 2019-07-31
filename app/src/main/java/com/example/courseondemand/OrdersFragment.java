@@ -15,7 +15,9 @@ import android.widget.Switch;
 
 import com.example.courseondemand.home_fragment_list.ListScheduleAdapter;
 import com.example.courseondemand.home_fragment_list.ListScheduleModel;
+import com.example.courseondemand.home_fragment_list.OrderAccepted;
 import com.example.courseondemand.home_fragment_list.OrderResponse;
+import com.example.courseondemand.home_fragment_list.OrdersAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +31,7 @@ import java.util.List;
 
 public class OrdersFragment extends Fragment {
 
-    private ArrayList<OrderResponse> mLists;
+    private ArrayList<OrderAccepted> mLists = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
@@ -44,15 +46,23 @@ public class OrdersFragment extends Fragment {
 
         RecyclerView orderList = v.findViewById(R.id.rvScheduleOrders);
 
-        mLists = (ArrayList<OrderResponse>) getArguments().getSerializable("acceptedOrders");
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            mLists = getArguments().getParcelableArrayList("orderlist");
+            LinearLayout listNotEmpty = v.findViewById(R.id.llOrders);
+            listNotEmpty.setVisibility(View.VISIBLE);
+            initRecyclerView(v);
+        } else {
 
-        initRecyclerView(v);
+        }
+
+
         return v;
     }
 
     private void initRecyclerView(View v) {
         mRecyclerView = v.findViewById(R.id.rvScheduleOrders);
-        mAdapter = new ListScheduleAdapter(mLists);
+        mAdapter = new OrdersAdapter(mLists);
         mLayoutManager = new LinearLayoutManager(v.getContext());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager);
