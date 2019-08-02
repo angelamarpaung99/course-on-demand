@@ -1,6 +1,5 @@
 package com.example.courseondemand;
 
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,36 +7,33 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.courseondemand.home_fragment_list.OrderAccepted;
 import com.example.courseondemand.home_fragment_list.OrderResponse;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
 
 import static android.support.constraint.Constraints.TAG;
 
 public class ScheduleDetailActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private String uid;
+    private RecyclerView.Adapter mAdapter;
+
     private DocumentReference studentRef;
     private TextView tvNameDetail, tvUniversityDetail, tvLessonDetail, tvMajorDetail, tvDurationDetail, tvDayDetail, tvStartDetail, tvEndsDetail,
             tvPacketDetail, tvPersonDetail, tvPriceDetail;
     private ImageView ivPersonDetail;
     private OrderResponse order;
-    private ArrayList<OrderAccepted> mOrder = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +65,8 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 
         Button btnAccept = findViewById(R.id.btnAccept);
         Button btnDecline = findViewById(R.id.btnDecline);
+
+
         btnDecline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,17 +112,9 @@ public class ScheduleDetailActivity extends AppCompatActivity {
                             btnAccept.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-//                                    order = documentSnapshot.toObject(OrderResponse.class);
-//                                    mOrder.add(order);
-//                                    Intent intent = new Intent(ScheduleDetailActivity.this, HomeNotActive.class);
-//                                    intent.putExtra("key", mOrder);
-//                                    startActivity(intent);
-                                    mOrder.add(new OrderAccepted(uid, name, university, lesson, major, duration,day, start, ends, packet, person, price, url));
+                                    studentRef.update("status", 1);
                                     Intent intent = new Intent(ScheduleDetailActivity.this, HomeNotActive.class);
-                                    intent.putExtra("orderlist", mOrder);
                                     startActivity(intent);
-
-                                    //habis di accept harusnya delete dari database
                                 }
                             });
                             btnDecline.setOnClickListener(new View.OnClickListener() {
@@ -139,20 +129,6 @@ public class ScheduleDetailActivity extends AppCompatActivity {
                 });
     }
 
-//    private void getStudent(){
-//        studentRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        if (documentSnapshot.exists()){
-//                            OrderResponse dbOrder = documentSnapshot.toObject(OrderResponse.class);
-//                            mOrder.add(dbOrder);
-//
-//                            tvNameDetail.setText(mOrder.get(0).student.);
-//                        }
-//                    }
-//                })
-//    }
 
     private void showDialog(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -161,7 +137,7 @@ public class ScheduleDetailActivity extends AppCompatActivity {
         builder.setPositiveButton("Decline", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                deleteSelectedItem();
+                deleteSelectedItem();
                 finish();
             }
         });
@@ -174,6 +150,22 @@ public class ScheduleDetailActivity extends AppCompatActivity {
         AlertDialog alertDialog =builder.create();
         alertDialog.show();
 
+    }
+
+    private void deleteSelectedItem() {
+        studentRef.delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Order successfully declined!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error declining order!", e);
+                    }
+                });
     }
 
 

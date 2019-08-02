@@ -21,7 +21,11 @@ import com.example.courseondemand.home_fragment_list.OrderResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -42,7 +46,7 @@ public class HomeFragment extends Fragment {
 
     private FirebaseFirestore db;
     private FirebaseAuth firebaseAuth;
-
+    public ListenerRegistration mRegistration;
     private String uid;
 
     @Override
@@ -85,22 +89,32 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
     }
 
-    private void getSchedule() {
-       db.collection("orders")
+
+    private void getSchedule(){
+        mRegistration = db.collection("orders")
                 .whereEqualTo("tentor.UID", uid)
-                .get()
-               .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                   @Override
-                   public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                       if (task.isSuccessful()){
-                           for (QueryDocumentSnapshot document : task.getResult()){
-                               OrderResponse order = document.toObject(OrderResponse.class);
-                               order.setId(document.getId());
-                               mOrder.add(order);
-                           }
-                           mAdapter.notifyDataSetChanged();
+                .whereEqualTo("status", 0)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w(TAG, "Listen failed.", e);
+                            return;
+                        }
+                        mOrder.clear();
+                       for (QueryDocumentSnapshot doc : queryDocumentSnapshots){
+                            OrderResponse order = doc.toObject(OrderResponse.class);
+                            order.setId(doc.getId());
+                            mOrder.add(order);
                        }
-                   }
-               });
+                       mAdapter.notifyDataSetChanged();
+                    }
+                });
+    }
+
+    @Override
+    public void onDestroy() {
+        mRegistration.remove();
+        super.onDestroy();
     }
 }

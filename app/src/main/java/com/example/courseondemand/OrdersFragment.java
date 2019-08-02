@@ -6,37 +6,38 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 
 import com.example.courseondemand.home_fragment_list.ListScheduleAdapter;
-import com.example.courseondemand.home_fragment_list.ListScheduleModel;
-import com.example.courseondemand.home_fragment_list.OrderAccepted;
 import com.example.courseondemand.home_fragment_list.OrderResponse;
-import com.example.courseondemand.home_fragment_list.OrdersAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class OrdersFragment extends Fragment {
 
-    private ArrayList<OrderAccepted> mLists = new ArrayList<>();
+    private List<OrderResponse> mOrder = new ArrayList<>();
+
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-    private FirebaseAuth firebaseAuth;
+
     private FirebaseFirestore db;
+    private FirebaseAuth firebaseAuth;
+    public ListenerRegistration mRegistOrder;
     private String uid;
 
     @Nullable
@@ -44,17 +45,14 @@ public class OrdersFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_orders, null);
 
-        RecyclerView orderList = v.findViewById(R.id.rvScheduleOrders);
+        firebaseAuth = FirebaseAuth.getInstance();
+        uid = firebaseAuth.getUid();
+        db = FirebaseFirestore.getInstance();
 
-        Bundle bundle = getArguments();
-        if (bundle != null){
-            mLists = getArguments().getParcelableArrayList("orderlist");
-            LinearLayout listNotEmpty = v.findViewById(R.id.llOrders);
-            listNotEmpty.setVisibility(View.VISIBLE);
-            initRecyclerView(v);
-        } else {
-
-        }
+        LinearLayout llOrder = v.findViewById(R.id.llOrders);
+        RecyclerView rvOrder = v.findViewById(R.id.rvScheduleOrders);
+        initRecyclerView(v);
+        getSchedule();
 
 
         return v;
@@ -62,10 +60,30 @@ public class OrdersFragment extends Fragment {
 
     private void initRecyclerView(View v) {
         mRecyclerView = v.findViewById(R.id.rvScheduleOrders);
-        mAdapter = new OrdersAdapter(mLists);
+        mAdapter = new ListScheduleAdapter(mOrder);
         mLayoutManager = new LinearLayoutManager(v.getContext());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager);
     }
 
+    private void getSchedule(){
+        mRegistOrder = db.collection("orders")
+                .whereEqualTo("tentor.UID", uid)
+                .whereEqualTo("status", 1)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w(TAG, "Listen failed.", e);
+                            return;
+                        }
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots){
+                            OrderResponse order1 = doc.toObject(OrderResponse.class);
+                            order1.setId(doc.getId());
+                            mOrder.add(order1);
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
+                });
+    }
 }

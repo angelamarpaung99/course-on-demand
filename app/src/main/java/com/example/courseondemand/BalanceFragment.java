@@ -40,7 +40,6 @@ public class BalanceFragment extends Fragment {
 
         getBalance();
 
-//        tvBalance.setText("155000");
         return v;
     }
 

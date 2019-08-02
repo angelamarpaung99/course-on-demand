@@ -7,24 +7,15 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.example.courseondemand.home_fragment_list.OrderAccepted;
-import com.example.courseondemand.home_fragment_list.OrderResponse;
-import com.google.android.gms.nearby.connection.Connections;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
 
 
 public class HomeNotActive extends AppCompatActivity {
-
-    private ArrayList<OrderAccepted> mOrder = new ArrayList<>();
     FirebaseAuth firebaseAuth;
 
 
@@ -72,14 +63,6 @@ public class HomeNotActive extends AppCompatActivity {
                             break;
                         case R.id.nav_orders:
                             selectedFragment = new OrdersFragment();
-                            Intent intent = getIntent();
-                            if (intent.hasExtra("acceptedOrders")){
-                                ArrayList<OrderAccepted> mOrder = getIntent().getParcelableArrayListExtra("orderlist");
-
-                                Bundle bundle = new Bundle();
-                                bundle.putParcelableArrayList("orderlist", mOrder);
-                                selectedFragment.setArguments(bundle);
-                            }
                             break;
                         case R.id.nav_account:
                             selectedFragment = new AccountFragment();

@@ -1,5 +1,6 @@
 package com.example.courseondemand;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,7 +29,7 @@ import static android.support.constraint.Constraints.TAG;
 
 import java.util.ArrayList;
 
-public class AccountFragment extends Fragment implements View.OnClickListener {
+public class AccountFragment extends Fragment  {
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String uid = firebaseAuth.getCurrentUser().getUid();
@@ -54,7 +55,15 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
         btnLogout = (Button) v.findViewById(R.id.btnLogout);
 
-        btnLogout.setOnClickListener(this);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebaseAuth.signOut();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), LoginMentor.class);
+                getActivity().startActivity(intent);
+            }
+        });
 
         return v;
     }
@@ -94,10 +103,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onClick(View view) {
-        if (view == btnLogout){
-            firebaseAuth.signOut();
-        }
-    }
+//    @Override
+//    public void onClick(View view) {
+//        if (view == btnLogout){
+//            firebaseAuth.signOut();
+//        }
+//    }
 }
