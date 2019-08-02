@@ -27,8 +27,6 @@ import static android.support.constraint.Constraints.TAG;
 public class ScheduleDetailActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private String uid;
-    private RecyclerView.Adapter mAdapter;
-
     private DocumentReference studentRef;
     private TextView tvNameDetail, tvUniversityDetail, tvLessonDetail, tvMajorDetail, tvDurationDetail, tvDayDetail, tvStartDetail, tvEndsDetail,
             tvPacketDetail, tvPersonDetail, tvPriceDetail;

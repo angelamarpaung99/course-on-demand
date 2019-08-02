@@ -112,9 +112,4 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-    @Override
-    public void onDestroy() {
-        mRegistration.remove();
-        super.onDestroy();
-    }
 }

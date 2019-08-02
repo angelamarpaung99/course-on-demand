@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.example.courseondemand.home_fragment_list.ListScheduleAdapter;
 import com.example.courseondemand.home_fragment_list.OrderResponse;
+import com.example.courseondemand.home_fragment_list.OrdersAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -49,8 +50,6 @@ public class OrdersFragment extends Fragment {
         uid = firebaseAuth.getUid();
         db = FirebaseFirestore.getInstance();
 
-        LinearLayout llOrder = v.findViewById(R.id.llOrders);
-        RecyclerView rvOrder = v.findViewById(R.id.rvScheduleOrders);
         initRecyclerView(v);
         getSchedule();
 
@@ -60,7 +59,7 @@ public class OrdersFragment extends Fragment {
 
     private void initRecyclerView(View v) {
         mRecyclerView = v.findViewById(R.id.rvScheduleOrders);
-        mAdapter = new ListScheduleAdapter(mOrder);
+        mAdapter = new OrdersAdapter(mOrder);
         mLayoutManager = new LinearLayoutManager(v.getContext());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager);

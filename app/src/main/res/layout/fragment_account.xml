@@ -12,10 +12,10 @@
 
        <ImageView
            android:id="@+id/ivTentorAccount"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
            android:layout_marginTop="50dp"
-           android:src="@drawable/imgtentor"
+           android:layout_width="67dp"
+           android:layout_height="74dp"
+           android:src="@drawable/user"
            android:layout_gravity="center_horizontal"/>
        <TextView
            android:layout_width="wrap_content"
