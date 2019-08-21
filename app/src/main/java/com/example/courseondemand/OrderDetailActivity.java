@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private TextView tvNameDetail1, tvUniversityDetail1, tvLessonDetail1, tvMajorDetail1, tvDurationDetail1, tvDayDetail1, tvStartDetail1, tvEndsDetail1,
             tvPacketDetail1, tvPersonDetail1, tvPriceDetail1;
     private ImageView ivPersonDetail1;
+    private ImageButton chatBtn, callBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +59,12 @@ public class OrderDetailActivity extends AppCompatActivity {
         tvPacketDetail1 = findViewById(R.id.tvPacketDetail1);
         tvPersonDetail1 = findViewById(R.id.tvPersonDetail1);
         tvPriceDetail1 = findViewById(R.id.tvPriceDetail1);
+
+        chatBtn = findViewById(R.id.chatBtn);
+        callBtn = findViewById(R.id.callBtn);
+
+//        chatBtn.setOnClickListener(this);
+//        callBtn.setOnClickListener(this);
 
         getStudent();
     }
@@ -108,4 +116,13 @@ public class OrderDetailActivity extends AppCompatActivity {
             }
         });
     }
+
+//    @Override
+//    public void onClick(View view) {
+//        if (view == callBtn){
+//
+//        } else if (view == chatBtn){
+//
+//        }
+//    }
 }

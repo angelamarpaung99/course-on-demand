@@ -1,5 +1,6 @@
 package com.example.courseondemand;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.courseondemand.home_fragment_list.UserResponse;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,6 +47,9 @@ public class AccountFragment extends Fragment  {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_account, null);
 
+        Toolbar toolbar = v.findViewById(R.id.toolbar);
+        ((HomeNotActive) getActivity()).getSupportActionBar().hide();
+
         setHasOptionsMenu(true);
 
         tvNameTentor = v.findViewById(R.id.tvNameTentor);
@@ -67,6 +72,8 @@ public class AccountFragment extends Fragment  {
 
         return v;
     }
+
+
 
     private void getTentor(){
         tentorRef.get()
@@ -102,11 +109,4 @@ public class AccountFragment extends Fragment  {
         super.onCreateOptionsMenu(menu,inflater);
     }
 
-
-//    @Override
-//    public void onClick(View view) {
-//        if (view == btnLogout){
-//            firebaseAuth.signOut();
-//        }
-//    }
 }

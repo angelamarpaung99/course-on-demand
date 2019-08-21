@@ -1,5 +1,6 @@
 package com.example.courseondemand;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +23,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class BalanceFragment extends Fragment {
+public class BalanceFragment extends Fragment implements View.OnClickListener {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private String uid = firebaseAuth.getCurrentUser().getUid();
     private DocumentReference userRef = db.collection("users").document(uid);
     private static final String KEY_BALANCE = "balance";
     private TextView tvBalance;
+    private Button btnWithdraw;
 
 
 
@@ -37,8 +40,11 @@ public class BalanceFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_balance, null);
 
         tvBalance = v.findViewById(R.id.tvBalance);
+        btnWithdraw = v.findViewById(R.id.btnWithdraw);
 
         getBalance();
+
+        btnWithdraw.setOnClickListener(this);
 
         return v;
     }
@@ -66,4 +72,11 @@ public class BalanceFragment extends Fragment {
               });
    }
 
+    @Override
+    public void onClick(View view) {
+        if (view == btnWithdraw){
+            Intent intent = new Intent(getActivity(), WithdrawalActivity.class);
+            startActivity(intent);
+        }
+    }
 }

@@ -1,43 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="320dp"
-       android:background="@color/colorPrimary"
-       android:orientation="vertical">
+    <include
+        android:id="@+id/logout_toolbar"
+        layout="@layout/logout_toolbar"></include>
 
-       <ImageView
-           android:id="@+id/ivTentorAccount"
-           android:layout_marginTop="50dp"
-           android:layout_width="67dp"
-           android:layout_height="74dp"
-           android:src="@drawable/user"
-           android:layout_gravity="center_horizontal"/>
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text=""
-           android:textColor="@android:color/white"
-           android:textSize="20sp"
-           android:layout_marginTop="30dp"
-           android:id="@+id/tvNameTentor"
-           android:layout_gravity="center_horizontal"
-           />
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:textSize="14sp"
-           android:text=""
-           android:id="@+id/tvStatus"
-           android:layout_marginTop="5dp"
-           android:layout_gravity="center_horizontal"
-           android:textColor="@android:color/white"
-           />
-   </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llAccount"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:layout_below="@+id/logout_toolbar"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary">
+        <ImageView
+            android:id="@+id/ivTentorAccount"
+            android:layout_width="67dp"
+            android:layout_height="74dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/tvNameTentor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,17 +91,6 @@
         <ImageView
             style="@style/Divider"
             android:background="@android:color/darker_gray"/>
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@android:color/white"
-            android:paddingLeft="16dp"
-            android:text="Logout"
-            android:gravity="left|center_vertical"
-            android:textSize="20sp"
-            android:textAllCaps="false"
-            />
         <ImageView
             style="@style/Divider"
             android:background="@android:color/darker_gray"/>
@@ -105,5 +99,6 @@
 
 
     </LinearLayout>
+
 
 </RelativeLayout>

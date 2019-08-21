@@ -22,6 +22,7 @@
         <activity android:name="com.example.courseondemand.HomeNotActive" android:theme="@style/HiddenTitleTheme"></activity>
         <activity android:name="com.example.courseondemand.ScheduleDetailActivity" android:theme="@style/HiddenTitleTheme"></activity>
         <activity android:name="com.example.courseondemand.OrderDetailActivity" android:theme="@style/HiddenTitleTheme"></activity>
+        <activity android:name=".WithdrawalActivity" android:theme="@style/HiddenTitleTheme"></activity>
     </application>
 
 </manifest>

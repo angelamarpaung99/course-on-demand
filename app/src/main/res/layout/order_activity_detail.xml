@@ -58,7 +58,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/chatorder"
                 android:layout_marginTop="90dp"
-                android:layout_marginLeft="18dp"/>
+                android:layout_marginLeft="18dp"
+                android:id="@+id/chatBtn"/>
 
         </LinearLayout>
 

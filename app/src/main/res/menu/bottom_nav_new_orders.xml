@@ -6,7 +6,7 @@
         android:title="@string/home"/>
     <item
         android:id="@+id/nav_fund"
-        android:title="@string/fund"
+        android:title="@string/balance"
         android:icon="@drawable/ic_monetization_on_black_24dp"/>
     <item
         android:id="@+id/nav_orders"
