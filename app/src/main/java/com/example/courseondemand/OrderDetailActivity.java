@@ -3,7 +3,9 @@ package com.example.courseondemand;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -16,34 +18,47 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.courseondemand.home_fragment_list.OrderResponse;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.core.Constants;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import static android.support.constraint.Constraints.TAG;
 
-public class OrderDetailActivity extends AppCompatActivity {
+
+public class OrderDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseFirestore db;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private String uid;
+    private String uid1;
     private DocumentReference studentRef;
+    private DocumentReference userRef;
     private TextView tvNameDetail1, tvUniversityDetail1, tvLessonDetail1, tvMajorDetail1, tvDurationDetail1, tvDayDetail1, tvStartDetail1, tvEndsDetail1,
             tvPacketDetail1, tvPersonDetail1, tvPriceDetail1;
     private ImageView ivPersonDetail1;
     private ImageButton chatBtn, callBtn;
+    private String phone;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_activity_detail);
 
+        db = FirebaseFirestore.getInstance();
+
         Intent intent = this.getIntent();
         uid = intent.getStringExtra("key1");
+        uid1 = firebaseAuth.getUid();
 
-        db = FirebaseFirestore.getInstance();
         studentRef = db.collection("orders").document(uid);
+        userRef = db.collection("users").document(uid1);
+
 
         initToolbar();
 
@@ -63,10 +78,32 @@ public class OrderDetailActivity extends AppCompatActivity {
         chatBtn = findViewById(R.id.chatBtn);
         callBtn = findViewById(R.id.callBtn);
 
-//        chatBtn.setOnClickListener(this);
-//        callBtn.setOnClickListener(this);
-
+        getPhone();
         getStudent();
+
+        chatBtn.setOnClickListener(this);
+        callBtn.setOnClickListener(this);
+    }
+
+    private void getPhone() {
+        userRef.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()){
+                             phone = documentSnapshot.getString("phone");
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Phone number does not exist", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Error! ", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, e.toString());
+                    }
+                });
     }
 
     private void getStudent() {
@@ -117,12 +154,16 @@ public class OrderDetailActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public void onClick(View view) {
-//        if (view == callBtn){
-//
-//        } else if (view == chatBtn){
-//
-//        }
-//    }
+    @Override
+    public void onClick(View view) {
+        if (view == callBtn){
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+            startActivity(intent);
+        } else if (view == chatBtn){
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            sendIntent.setData(Uri.parse("sms:"));
+            sendIntent.putExtra("address", phone);
+            startActivity(sendIntent);
+        }
+    }
 }

@@ -46,6 +46,8 @@ public class OrdersFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_orders, null);
 
+        ((HomeNotActive) getActivity()).getSupportActionBar().show();
+
         firebaseAuth = FirebaseAuth.getInstance();
         uid = firebaseAuth.getUid();
         db = FirebaseFirestore.getInstance();

@@ -54,6 +54,8 @@ public class HomeFragment extends Fragment {
         final View v = inflater.inflate(R.layout.fragment_home, null);
         final Switch switchActive = v.findViewById(R.id.switchActive1);
 
+        ((HomeNotActive) getActivity()).getSupportActionBar().show();
+
         firebaseAuth = FirebaseAuth.getInstance();
         uid = firebaseAuth.getUid();
         db = FirebaseFirestore.getInstance();

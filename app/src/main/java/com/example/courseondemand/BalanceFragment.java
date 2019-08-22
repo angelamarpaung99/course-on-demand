@@ -38,6 +38,7 @@ public class BalanceFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_balance, null);
+        ((HomeNotActive) getActivity()).getSupportActionBar().show();
 
         tvBalance = v.findViewById(R.id.tvBalance);
         btnWithdraw = v.findViewById(R.id.btnWithdraw);

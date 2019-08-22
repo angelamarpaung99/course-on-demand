@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,36 +11,35 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginBottom="514dp"
+                android:text="COD"
+                android:textColor="#3D8AFF"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginRight="260dp"
-            android:layout_marginBottom="514dp"
-            android:text="COD"
-            android:textColor="#3D8AFF"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="48dp"
+                android:paddingTop="100dp"
+                android:text="Course On Demand"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="italic" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="126dp"
-            android:layout_marginRight="180dp"
-            android:layout_marginBottom="493dp"
-            android:text="Course On Demand"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="italic" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="202dp"
+            android:layout_marginTop="200dp"
             android:text="Mentor Login"
             android:textColor="@color/colorPrimary"
             android:textSize="36sp"
@@ -75,7 +74,7 @@
             android:paddingLeft="118dp"
             android:paddingRight="118dp"
             android:layout_marginTop="282dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/cast_expanded_controller_ad_container_white_stripe_color"
             android:hint="Input Email"
             android:textAlignment="center"
             android:textSize="18dp" />
@@ -107,7 +106,7 @@
             android:layout_marginTop="371dp"
             android:paddingLeft="98dp"
             android:paddingRight="98dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/cast_expanded_controller_ad_container_white_stripe_color"
             android:hint="Input Password"
             android:inputType="textPassword"
             android:textAlignment="center"
@@ -139,4 +138,4 @@
 
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
