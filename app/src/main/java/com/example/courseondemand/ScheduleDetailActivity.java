@@ -53,8 +53,8 @@ public class ScheduleDetailActivity extends AppCompatActivity {
         tvMajorDetail = findViewById(R.id.tvMajorDetail);
         tvDurationDetail = findViewById(R.id.tvDurationDetail);
         tvDayDetail = findViewById(R.id.tvDayDetail);
-        tvStartDetail = findViewById(R.id.tvStartDetail);
-        tvEndsDetail = findViewById(R.id.tvEndsDetail);
+//        tvStartDetail = findViewById(R.id.tvStartDetail);
+//        tvEndsDetail = findViewById(R.id.tvEndsDetail);
         tvPacketDetail = findViewById(R.id.tvPacketDetail);
         tvPersonDetail = findViewById(R.id.tvPersonDetail);
         tvPriceDetail = findViewById(R.id.tvPriceDetail);
@@ -97,9 +97,9 @@ public class ScheduleDetailActivity extends AppCompatActivity {
                             tvLessonDetail.setText(lesson);
                             tvMajorDetail.setText(major);
                             tvDurationDetail.setText(duration);
-                            tvDayDetail.setText(day);
-                            tvStartDetail.setText(start);
-                            tvEndsDetail.setText(ends);
+                            tvDayDetail.setText(day+ " "+ start + " - " + ends);
+//                            tvStartDetail.setText(start);
+//                            tvEndsDetail.setText(ends);
                             tvPacketDetail.setText(packet);
                             tvPersonDetail.setText(person);
                             tvPriceDetail.setText(price);

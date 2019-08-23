@@ -54,11 +54,8 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
 
         Intent intent = this.getIntent();
         uid = intent.getStringExtra("key1");
-        uid1 = firebaseAuth.getUid();
 
         studentRef = db.collection("orders").document(uid);
-        userRef = db.collection("users").document(uid1);
-
 
         initToolbar();
 
@@ -69,8 +66,8 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         tvMajorDetail1 = findViewById(R.id.tvMajorDetail1);
         tvDurationDetail1 = findViewById(R.id.tvDurationDetail1);
         tvDayDetail1 = findViewById(R.id.tvDayDetail1);
-        tvStartDetail1 = findViewById(R.id.tvStartDetail1);
-        tvEndsDetail1 = findViewById(R.id.tvEndsDetail1);
+//        tvStartDetail1 = findViewById(R.id.tvStartDetail1);
+//        tvEndsDetail1 = findViewById(R.id.tvEndsDetail1);
         tvPacketDetail1 = findViewById(R.id.tvPacketDetail1);
         tvPersonDetail1 = findViewById(R.id.tvPersonDetail1);
         tvPriceDetail1 = findViewById(R.id.tvPriceDetail1);
@@ -78,15 +75,16 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         chatBtn = findViewById(R.id.chatBtn);
         callBtn = findViewById(R.id.callBtn);
 
-        getPhone();
+
         getStudent();
+//        getPhone();
 
         chatBtn.setOnClickListener(this);
         callBtn.setOnClickListener(this);
     }
 
     private void getPhone() {
-        userRef.get()
+        db.collection("users").document(uid1).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -124,19 +122,21 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
                             final String person1 = documentSnapshot.getString("packet.person");
                             final String price1 = documentSnapshot.getLong("payment.price").toString();
                             final String url1 = documentSnapshot.getString("student.picture");
+                            uid1 = documentSnapshot.getString("student.UID");
 
                             tvNameDetail1.setText(name1);
                             tvUniversityDetail1.setText(university1);
                             tvLessonDetail1.setText(lesson1);
                             tvMajorDetail1.setText(major1);
                             tvDurationDetail1.setText(duration1);
-                            tvDayDetail1.setText(day1);
-                            tvStartDetail1.setText(start1);
-                            tvEndsDetail1.setText(ends1);
+                            tvDayDetail1.setText(day1+ " "+ start1 + " - " + ends1);
+//                            tvStartDetail1.setText(start1);
+//                            tvEndsDetail1.setText(ends1);
                             tvPacketDetail1.setText(packet1);
                             tvPersonDetail1.setText(person1);
                             tvPriceDetail1.setText(price1);
                             Tools.setImage(ivPersonDetail1 ,url1);
+                            getPhone();
                         }
                     }
                 });
