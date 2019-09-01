@@ -134,7 +134,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
 //                            tvEndsDetail1.setText(ends1);
                             tvPacketDetail1.setText(packet1);
                             tvPersonDetail1.setText(person1);
-                            tvPriceDetail1.setText(price1);
+                            tvPriceDetail1.setText("Rp. " + price1);
                             Tools.setImage(ivPersonDetail1 ,url1);
                             getPhone();
                         }

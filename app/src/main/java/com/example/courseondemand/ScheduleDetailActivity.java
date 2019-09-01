@@ -102,7 +102,7 @@ public class ScheduleDetailActivity extends AppCompatActivity {
 //                            tvEndsDetail.setText(ends);
                             tvPacketDetail.setText(packet);
                             tvPersonDetail.setText(person);
-                            tvPriceDetail.setText(price);
+                            tvPriceDetail.setText("Rp. " + price);
                             Tools.setImage(ivPersonDetail ,url);
 
                             Button btnAccept = findViewById(R.id.btnAccept);
