@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:label=""
+        android:label="@string/cod"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name="com.example.courseondemand.SplashActivity">
             <intent-filter>
