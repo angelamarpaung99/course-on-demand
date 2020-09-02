@@ -20,7 +20,6 @@ This app is built using Java Programming Language and Integrated to Google Fireb
 
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Android Studio](https://developer.android.com/studio)
 * Java Programming Language
 
